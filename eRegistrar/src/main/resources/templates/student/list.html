@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main-layout}">
+<head>
+<meta charset="ISO-8859-1">
+
+<title>eRegistrar - Students Collection</title>
+</head>
+<body>
+	<div class="container" layout:fragment="content">
+		<h2 style="text-align: center">List of Students in our Collection</h2>
+		<div style="display: flex;">
+			<a class="nav-link" href="/students/newStudent">
+				<button class="btn btn-primary my-2 my-sm-0" type="submit">Add
+					New Student</button>
+			</a>
+
+			<form class="form-inline my-2 my-lg-0" action="#"
+				th:action="@{/students/search}" method="get">
+				<input class="form-control mr-sm-2" type="text" placeholder="search"
+					required />
+				<button class="btn btn-secondary my-2 my-sm-0"
+					type="submit">Search</button>
+
+			</form>
+
+		</div>
+		<div>
+			<table class="table table-striped ">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Student ID Number</th>
+						<th scope="col">First Name</th>
+						<th scope="col">Middle Name</th>
+						<th scope="col">Last Name</th>
+						<th scope="col">Cumulative GPA</th>
+						<th scope="col">Enrollment Date</th>
+						<th scope="col">Is International ?</th>
+						<th scope="col" colspan="2">Action</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="student, std : ${students}">
+						<th scope="row" th:text="${std.count}"></th>
+						<td th:text="${student.studentNumber}"></td>
+						<td th:text="${student.firstName}"></td>
+						<td th:text="${student.middleName}"></td>
+						<td th:text="${student.lastName}"></td>
+						<td th:text="${student.cgpa}"></td>
+						<td th:text="${student.enrollmentDate}"></td>
+						<td th:text="${student.isInternational}"></td>
+						<td><a th:href="@{'/editstudent/' + ${student.studentId}}">Edit</a></td>
+						<td><a th:href="@{'/deletestudent/' + ${student.studentId}}"
+							onclick="if(!(confirm('Are you sure you want to delete ')))return false">Delete</a></td>
+					</tr>
+					<tr th:if="${studentsCount < 1}">
+						<td colspan="10" style="text-align: center">Currently No
+							Student is Available</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+			<hr />
+		</div>
+	</div>
+</body>
+</html>

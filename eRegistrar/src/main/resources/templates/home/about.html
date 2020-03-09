@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main-layout}">
+<head>
+<meta charset="ISO-8859-1">
+
+<title>eRegistrar - About</title>
+</head>
+<body>
+	<div class="container" layout:fragment="content">
+		<h2 style="text-align: center">About eRegistrar</h2>
+		<hr>
+		<div>
+			<h1>
+				<img th:src="@{/images/miu.jpeg}" alt="MIU" style="width:500px;height:600px;"/>  
+				<img th:src="@{/images/student.jpg}" alt="students" style="width:500px;height:600px;"/>  
+
+			</h1>
+		</div>
+	</div>
+</body>
+</html>
